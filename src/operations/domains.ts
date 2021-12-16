@@ -45,7 +45,7 @@ export function createDomain(mOptions: MigrationOptions) {
 
     return `CREATE DOMAIN ${domainNameStr} AS ${typeStr}${constraintsStr};`
   }
-  _create.reverse = (domainName, type, options) => dropDomain(mOptions)(domainName, options)
+  _create.reverse = (domainName) => dropDomain(mOptions)(domainName)
   return _create
 }
 

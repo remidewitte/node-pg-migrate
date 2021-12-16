@@ -48,7 +48,7 @@ export function createFunction(mOptions: MigrationOptions) {
   AS ${escapeValue(definition)}
   ${options.join('\n  ')};`
   }
-  _create.reverse = dropFunction(mOptions)
+  _create.reverse = (functionName, functionParams) => dropFunction(mOptions)(functionName, functionParams)
   return _create
 }
 

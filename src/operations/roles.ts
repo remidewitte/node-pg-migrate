@@ -1,6 +1,6 @@
 import { MigrationOptions } from '../types'
 import { escapeValue } from '../utils'
-import { CreateRole, DropRole, AlterRole, RenameRole, RoleOptions, DropRoleReverse } from './rolesTypes'
+import { CreateRole, DropRole, AlterRole, RenameRole, RoleOptions } from './rolesTypes'
 
 export { CreateRole, DropRole, AlterRole, RenameRole }
 
@@ -64,11 +64,6 @@ export function dropRole(mOptions: MigrationOptions) {
   return _drop
 }
 
-function reverseDropRole(mOptions: MigrationOptions) {
-  const _reverseDrop: DropRoleReverse = (roleName) => dropRole(mOptions)(roleName)
-  return _reverseDrop
-}
-
 export function createRole(mOptions: MigrationOptions) {
   const _create: CreateRole = (roleName, roleOptions = {}) => {
     const options = formatRoleOptions({
@@ -83,7 +78,7 @@ export function createRole(mOptions: MigrationOptions) {
     const optionsStr = options ? ` WITH ${options}` : ''
     return `CREATE ROLE ${mOptions.literal(roleName)}${optionsStr};`
   }
-  _create.reverse = reverseDropRole(mOptions)
+  _create.reverse = (roleName) => dropRole(mOptions)(roleName)
   return _create
 }
 

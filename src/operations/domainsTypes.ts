@@ -15,11 +15,7 @@ export interface DomainOptionsAlter extends DomainOptions {
   allowNull?: boolean
 }
 
-type CreateDomainFn = (
-  domainName: Name,
-  type: Type,
-  domainOptions?: DomainOptionsCreate & DropOptions,
-) => string | string[]
+type CreateDomainFn = (domainName: Name, type: Type, domainOptions?: DomainOptionsCreate) => string | string[]
 export type CreateDomain = CreateDomainFn & { reverse: CreateDomainFn }
 export type DropDomain = (domainName: Name, dropOptions?: DropOptions) => string | string[]
 export type AlterDomain = (domainName: Name, domainOptions: DomainOptionsAlter) => string | string[]

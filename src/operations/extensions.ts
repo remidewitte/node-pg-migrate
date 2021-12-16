@@ -28,6 +28,6 @@ export function createExtension(mOptions: MigrationOptions) {
       return `CREATE EXTENSION${ifNotExistsStr} ${extensionStr}${schemaStr};`
     })
   }
-  _create.reverse = dropExtension(mOptions)
+  _create.reverse = (extension) => dropExtension(mOptions)(extension)
   return _create
 }

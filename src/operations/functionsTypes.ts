@@ -22,7 +22,7 @@ export interface FunctionOptions {
 type CreateFunctionFn = (
   functionName: Name,
   functionParams: FunctionParam[],
-  functionOptions: FunctionOptions & DropOptions,
+  functionOptions: FunctionOptions,
   definition: Value,
 ) => string | string[]
 export type CreateFunction = CreateFunctionFn & { reverse: CreateFunctionFn }
